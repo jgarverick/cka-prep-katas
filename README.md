@@ -11,54 +11,41 @@ Install these tools:
 3. `kubectl`
 4. `curl`
 5. `helm`
-6. `jq` (optional, for ad-hoc inspection)
+6. `jq` (optional)
+7. `python3`
 
 ## Quickstart
 
 1. Create the cluster and install components:
    1. `make cluster-up`
-2. Seed an exercise:
+2. Load exam aliases:
+   1. `source scripts/env.sh`
+3. Seed an exercise:
    1. `make seed EXERCISE=1`
-3. Solve it manually or apply the reference:
+4. Solve it manually or apply the reference:
    1. `make solve EXERCISE=1`
-4. Verify and record your attempt:
+5. Verify and record your attempt:
    1. `make verify EXERCISE=1`
-5. Tear down when finished:
-   1. `make cluster-down`
-
-## Environment setup
-
-Load the exam shell helpers:
-
-- `source scripts/env.sh`
-
-This script sets:
-
-- `alias k=kubectl`
-- `export do="--dry-run=client -o yaml"`
-- `export now="--force --grace-period=0"`
-- `kubectl` Bash completion and alias completion
-- A `.vimrc` snippet: `set expandtab tabstop=2 shiftwidth=2`
 
 ## Cluster profile
 
 The cluster runs on `kind` with one control-plane node and two workers. The bootstrap installs:
 
-1. Calico CNI for real `NetworkPolicy` enforcement
+1. Calico CNI for `NetworkPolicy` enforcement
 2. Gateway API standard channel CRDs
 3. NGINX Gateway Fabric
-4. `metrics-server` for HPA exercises
+4. `metrics-server`
 
 ## Timer and progress tracking
 
 - `make seed EXERCISE=n` starts the exercise timer from `meta.yaml`.
 - `make verify EXERCISE=n` stops the timer, reports elapsed time, checks budget, and logs the result.
 - `make timer-stop` stops any running timer.
-- `make timer-status` shows elapsed and remaining time.
-- `make stats` prints attempt stats by exercise.
-- `make exam` runs randomized exercises under one 120-minute exam clock.
+- `make timer-status` prints time remaining.
+- `make stats` prints best time, last time, and pass rate by exercise.
+- `make exam` runs randomized exercises under one 120-minute clock and scores against 66%.
 
-Attempts are logged to `.progress/history.tsv` with exercise ID, timestamp, elapsed seconds, timeout, and pass or fail.
+Attempts are stored in `.progress/history.tsv`.
 
 ## Exercise index by CKA domain
 
@@ -96,5 +83,3 @@ Attempts are logged to `.progress/history.tsv` with exercise ID, timestamp, elap
 - `15-count-roles-per-namespace`
 - `17-helm-values-override-reuse-values`
 - `18-kustomize-hpa-patching`
-
-Use exercises `01`, `06`, and `08` as full reference implementations. The remaining directories contain scaffold files and time budgets that you can expand.

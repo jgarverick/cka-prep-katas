@@ -1,16 +1,17 @@
-# Exercise 05: fix-readiness-probe-exec-array
+# Exercise 05: Fix a readiness probe exec command array
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+Fix deployment `probe-fix` in namespace `project-05`. The readiness probe uses one scalar-like token (`wget -T2 -O- http://svc:80`) instead of a command array.
 
 ## Procedure
 
 1. Run `make seed EXERCISE=5`.
-2. Apply your changes in the cluster.
-3. Run `make verify EXERCISE=5`.
+2. Inspect deployment `probe-fix`.
+3. Replace probe command with tokenized array.
+4. Run `make verify EXERCISE=5`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- For `exec.command`, each command token is a separate list element.
+- A single element with spaces fails executable lookup.

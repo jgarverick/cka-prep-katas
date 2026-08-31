@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-echo "Seed script not implemented yet for this exercise."
+kubectl delete ns project-rbac --ignore-not-found
+kubectl create ns project-rbac
+echo "Exercise 14 seeded."

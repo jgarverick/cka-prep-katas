@@ -1,16 +1,16 @@
-# Exercise 12: broken-kube-apiserver
+# Exercise 12: Recover a broken kube-apiserver
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+The seed adds an invalid flag to kube-apiserver static pod manifest. Diagnose and fix it using node-level tools when API is unavailable.
 
 ## Procedure
 
 1. Run `make seed EXERCISE=12`.
-2. Apply your changes in the cluster.
-3. Run `make verify EXERCISE=12`.
+2. Inspect failures with `crictl ps -a`, `crictl logs`, and `journalctl -u kubelet`.
+3. Remove invalid flag from kube-apiserver manifest.
+4. Run `make verify EXERCISE=12`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- `kubectl` might be unavailable until API recovers.

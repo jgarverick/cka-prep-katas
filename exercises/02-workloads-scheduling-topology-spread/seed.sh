@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-echo "Seed script not implemented yet for this exercise."
+kubectl delete ns project-02 --ignore-not-found
+kubectl create ns project-02
+echo "Exercise 02 seeded in namespace project-02."

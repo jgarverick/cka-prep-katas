@@ -1,16 +1,17 @@
-# Exercise 07: gatewayclass-controller-troubleshooting
+# Exercise 07: Fix a GatewayClass controller typo
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+A Gateway in namespace `project-gwfix` never receives an address because its GatewayClass controller name is typoed. Fix the GatewayClass so the Gateway becomes programmed.
 
 ## Procedure
 
 1. Run `make seed EXERCISE=7`.
-2. Apply your changes in the cluster.
-3. Run `make verify EXERCISE=7`.
+2. Inspect GatewayClass and Gateway conditions.
+3. Correct `spec.controllerName`.
+4. Run `make verify EXERCISE=7`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- You must fix `GatewayClass`, not only `Gateway`.
+- Verify `Programmed=True` on the Gateway.

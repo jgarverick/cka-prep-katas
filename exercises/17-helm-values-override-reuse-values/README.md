@@ -1,16 +1,20 @@
-# Exercise 17: helm-values-override-reuse-values
+# Exercise 17: Use Helm values precedence and reuse-values
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+Install chart `sample-app` in namespace `project-17` with this sequence:
+
+1. `--set crds.enabled=true`
+2. override with `-f values.yaml` setting it to `false`
+3. run `helm upgrade --reuse-values`
 
 ## Procedure
 
 1. Run `make seed EXERCISE=17`.
-2. Apply your changes in the cluster.
+2. Install and upgrade release `sample-app`.
 3. Run `make verify EXERCISE=17`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- Value precedence applies per command invocation.
+- `--reuse-values` carries effective values forward.

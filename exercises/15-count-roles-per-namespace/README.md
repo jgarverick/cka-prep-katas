@@ -1,16 +1,15 @@
-# Exercise 15: count-roles-per-namespace
+# Exercise 15: Count Roles per namespace
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+Count `Role` objects by namespace and write output to `/tmp/cka-prep-labs/15-role-counts.txt` in format `<namespace> <count>`.
 
 ## Procedure
 
 1. Run `make seed EXERCISE=15`.
-2. Apply your changes in the cluster.
+2. Generate the counts.
 3. Run `make verify EXERCISE=15`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- Count namespaced `Role` resources, not `ClusterRole`.

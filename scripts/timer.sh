@@ -111,7 +111,7 @@ stop_timer() {
 status_timer() {
   if [[ ! -f "$STATE_FILE" ]]; then
     echo "No timer state found."
-    return 1
+    return 0
   fi
 
   local exercise start_ts timeout_minutes

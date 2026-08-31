@@ -1,16 +1,20 @@
-# Exercise 14: rbac-serviceaccount-rolebinding
+# Exercise 14: Create ServiceAccount, Role, and RoleBinding
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+In namespace `project-rbac`, create:
+
+- ServiceAccount `app-sa`
+- Role `pod-reader` with `get` and `list` on pods
+- RoleBinding `app-sa-pod-reader`
 
 ## Procedure
 
 1. Run `make seed EXERCISE=14`.
-2. Apply your changes in the cluster.
-3. Run `make verify EXERCISE=14`.
+2. Create the RBAC resources.
+3. Validate with `kubectl auth can-i`.
+4. Run `make verify EXERCISE=14`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- RoleBinding subject namespace must match ServiceAccount namespace.

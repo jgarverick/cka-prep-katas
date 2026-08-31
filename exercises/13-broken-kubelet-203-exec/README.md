@@ -1,16 +1,16 @@
-# Exercise 13: broken-kubelet-203-exec
+# Exercise 13: Diagnose kubelet 203/EXEC
 
 ## Task
 
-Complete the objective for this exercise in CKA style.
+Fix simulated kubelet systemd unit `ExecStart` path at `/tmp/cka-prep-labs/13-kubelet.service`.
 
 ## Procedure
 
 1. Run `make seed EXERCISE=13`.
-2. Apply your changes in the cluster.
-3. Run `make verify EXERCISE=13`.
+2. Inspect the unit and identify bad command path.
+3. Correct `ExecStart`.
+4. Run `make verify EXERCISE=13`.
 
 ## Gotchas
 
-- Read the required fields exactly before patching.
-- Confirm the runtime state, not only the YAML shape.
+- `203/EXEC` indicates missing or non-executable command path.
