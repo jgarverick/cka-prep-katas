@@ -1,0 +1,3 @@
+id: 12
+timeout: 15
+title: Recover broken kube-apiserver static pod
